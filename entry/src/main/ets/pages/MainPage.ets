@@ -1,3 +1,4 @@
+import promptAction from '@ohos.promptAction';
 import { TabID, TabItemList } from '../model/TabItem'
 import { DeviceSearchComponent } from '../view/DeviceSearchComponent';
 import HouseStateComponent from '../view/HouseStateComponent';
@@ -30,10 +31,22 @@ struct MainPage {
       }
       // .tabBar('小屋状态')
       .tabBar(this.MyTabBuilder(TabID.HOUSE)) //调用自定义的TabBar
+      .onClick(()=>{
+        promptAction.showToast({
+          message:'请先登录!',
+          duration:2000,
+        })
+      })
       TabContent(){
         // Text('搜索设备')
         DeviceSearchComponent()//调用设备搜索组件
       }
+      .onClick(()=>{
+        promptAction.showToast({
+          message:'请先登录!',
+          duration:2000,
+        })
+      })
       // .tabBar('搜索设备')
       .tabBar(this.MyTabBuilder(TabID.SEARCH_DEVICE)) //调用自定义的TabBar
       TabContent(){
@@ -43,6 +56,12 @@ struct MainPage {
       }
       // .tabBar('我的')
       .tabBar(this.MyTabBuilder(TabID.MINE)) //调用自定义的TabBar
+      .onClick(()=>{
+        promptAction.showToast({
+          message:'请先登录!',
+          duration:2000,
+        })
+      })
     }
     .barWidth('100%')
     .barMode(BarMode.Fixed)

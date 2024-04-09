@@ -1,16 +1,25 @@
+import router from '@ohos.router';
 @Entry
 @Component
 export  default struct ControlConsole{
 
   build(){
     Column(){
-      Row(){
+      Row() {
+        Image($r('app.media.return_key'))
+          .margin({ top: 15, left: 5 })
+          .width(30)
+          .height(27)
+          .onClick(()=>{
+            router.back();//返回上一级
+          })
         Text('控制面板')
-          .fontSize(24)
-          .fontWeight(FontWeight.Bold)
+          .fontSize(28)
           .fontColor(Color.White)
-          .margin({top:10})
+          .fontWeight(FontWeight.Bold)
+          .margin({ top: 15, left: '50%' })
       }
+      .width('95%')
       Row(){
         Text('房门开关：')
           .fontSize(22)
@@ -21,6 +30,7 @@ export  default struct ControlConsole{
           .borderColor('#b9b9b9')
           .borderRadius(50)
       }
+      .margin({top:15})
       .width('95%')
       .justifyContent(FlexAlign.SpaceBetween)
       Row(){
@@ -75,7 +85,7 @@ export  default struct ControlConsole{
     }
     .width('100%')
     .height('100%')
-    .backgroundImage($r('app.media.index_background'))
+    .backgroundImage($r('app.media.index_background1'))
     .backgroundImageSize(ImageSize.Cover)
   }
 }

@@ -1,13 +1,11 @@
 {
   "src": [
-    "pages/login",
-    "pages/index",
-    "pages/Loading",
     "pages/MainPage",
     "pages/MainPages",
     "house/DeviceStatus",
-    "pages/index",
     "house/HomeGate",
-    "house/ControlConsole"
+    "house/ControlConsole",
+    "myhomepage/PersonalData",
+    "myhomepage/AccountSecurity"
   ]
 }

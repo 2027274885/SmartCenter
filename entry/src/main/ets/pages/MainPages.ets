@@ -1,3 +1,4 @@
+import prompt from '@ohos.prompt';
 import { TabID, TabItemList } from '../model/TabItem'
 import { DeviceSearchComponent } from '../view/DeviceSearchComponent';
 import HouseStateComponent from '../view/HouseStateComponent';
@@ -5,7 +6,7 @@ import { MineComponent } from '../view/MineComponent';
 import { NotLogin } from '../view/NotLogin';
 @Entry
 @Component
-struct MainPage {
+struct MainPages {
   @State pageIndex:number = 0;//页面索引
   private tabController:TabsController = new TabsController();//tab切换控制器
 

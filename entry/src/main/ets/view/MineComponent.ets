@@ -1,9 +1,13 @@
+import router from '@ohos.router';
+import promptAction from '@ohos.promptAction';
+import UserBean from '../common/bean/UserBean';
 import { InfoItem, MineItemList } from '../model/MineItemList';
 @Entry
 @Component
 export struct MineComponent{
-  @State nickname:string = '金克斯';//昵称
-  @State signature:string = '来一发轰轰烈烈的开场吧';//签名
+  @State userBean:UserBean = new UserBean()
+  @State nickname:string = this.userBean.getNickName();//昵称
+  @State signature:string = this.userBean.getSignature();//签名
   build(){
     Column() {
       Image($r('app.media.user_avtar1'))
@@ -20,11 +24,11 @@ export struct MineComponent{
             .borderRadius(34)
         }
 
-        Text(this.nickname)
+        Text(`${this.nickname}`)
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
           .fontColor(Color.White)
-        Text(this.signature)
+        Text(`${this.signature}`)
           .fontSize(14)
           .fontColor(Color.Orange)
       }
@@ -34,7 +38,7 @@ export struct MineComponent{
       Shape() {
         Rect()
           .width('100%')
-          .height('28%')
+          .height(240)
           .fill('#3d3f46')
           .radius(40)
           .opacity(0.5)
@@ -48,12 +52,71 @@ export struct MineComponent{
                     Image(item.icon)
                       .width(30)
                       .height(30)
-                    Text(item.title)
-                      .fontSize(22)
-                      .fontColor(Color.White)
-                      .margin({ left: 10 })
+                    if (item.title == '个人资料') {
+                      Shape() {
+                        Rect().width('80%').height(30)
+                          .opacity(0)
+                        Text(item.title)
+                          .fontSize(22)
+                          .fontColor(Color.White)
+                          .margin({ left: 10 })
+                      }
+                      .onClick(() => {
+                        router.pushUrl({
+                          url:"myhomepage/PersonalData"
+                        })
+                      })
+                    }else if (item.title == '账号与安全') {
+                      Shape() {
+                        Rect().width('80%').height(30)
+                          .opacity(0)
+                        Text(item.title)
+                          .fontSize(22)
+                          .fontColor(Color.White)
+                          .margin({ left: 10 })
+                      }
+                      .onClick(() => {
+                        router.pushUrl({
+                          url:"myhomepage/AccountSecurity"
+                        })
+                      })
+                    }else if (item.title == '检查更新') {
+                      Shape() {
+                        Rect().width('80%').height(30)
+                          .opacity(0)
+                        Text(item.title)
+                          .fontSize(22)
+                          .fontColor(Color.White)
+                          .margin({ left: 10 })
+                      }
+                      .onClick(()=>{
+                        promptAction.showToast({
+                          message:"当前暂无更新",
+                          duration:2000,
+                        })
+                      })
+                    }else if (item.title == '关于') {
+                      Shape() {
+                        Rect().width('80%').height(30)
+                          .opacity(0)
+                        Text(item.title)
+                          .fontSize(22)
+                          .fontColor(Color.White)
+                          .margin({ left: 10 })
+                      }
+                      .onClick(()=>{
+                        promptAction.showToast({
+                          message:"当前版本为1.0.0",
+                          duration:2000,
+                        })
+                      })
+                    }else{
+                      Text(item.title)
+                        .fontSize(22)
+                        .fontColor(Color.White)
+                        .margin({ left: 10 })
+                    }
                   }
-
                   Image($r('app.media.right'))
                     .width(38)
                     .height(38)
@@ -84,18 +147,6 @@ export struct MineComponent{
       }
       .margin({ top: 20 })
       .width('90%')
-      Column(){
-        Button('退出登录')
-          .onClick(()=>{
-            ''
-          })
-          .width('30%')
-          .height(40)
-          .margin({top:220})
-          .fontColor(Color.White)
-          .fontSize(20)
-          .backgroundColor('#3d3f46')
-      }
     }
     .width('100%')
     .height('100%')
